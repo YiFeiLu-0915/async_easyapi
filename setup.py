@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='easyapi',
-    version='2.0',
+    version='1.0',
     description='一个方便拓展快速构建异步curd的后端api工具 基于 quart',
     packages=find_packages(exclude=[]),
     author='suchang zhengzhandong and wukunze',
