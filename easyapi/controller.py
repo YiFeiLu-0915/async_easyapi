@@ -71,8 +71,9 @@ class BaseController(metaclass=ControllerMetaClass):
             ctx = EasyApiContext()
         if query is None:
             query = {}
-        if pager is None:
-            pager = Pager(page=1, per_page=20)
+        # 如果没有指定声明page，返回所有数据 不自动加limite！~~~~
+        # if pager is None:
+        #     pager = Pager(page=1, per_page=20)
         if sorter is None:
             sorter = Sorter(sort_by='id', desc=True)
         query = cls.reformatter(ctx=ctx, data=query)
