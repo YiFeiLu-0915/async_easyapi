@@ -1,0 +1,6 @@
+page perpage:
+后端不做限制，不写per_page自动返回所有数据，要前端table-mixin做限制。
+
+
+_like:
+改为全部查询：  % + v + % 。
