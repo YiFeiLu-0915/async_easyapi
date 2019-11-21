@@ -134,6 +134,8 @@ class BaseDao(metaclass=DaoMetaClass):
                     sql = sql.offset((page - 1) * 30).limit(30)
                 else:
                     sql = sql.offset((page - 1) * per_page)
+        if pager is None:
+            sql = sql.offset(0).limit(1000000)
         if sorter:
             order_by = sorter.sort_by
             desc = sorter.desc

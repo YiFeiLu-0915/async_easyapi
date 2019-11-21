@@ -46,7 +46,7 @@ class AbcUrlCondition(metaclass=abc.ABCMeta):
 class DefaultUrlCondition(AbcUrlCondition):
 
     @classmethod
-    def parser(cls, args: dict) -> (dict, dict, dict):
+    def parser(cls, args: dict) -> (dict, Pager, Sorter):
         """
         默认的url参数条件解析
         :param args:
