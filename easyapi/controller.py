@@ -72,8 +72,8 @@ class BaseController(metaclass=ControllerMetaClass):
         if query is None:
             query = {}
         # 如果没有指定声明page，返回所有数据 不自动加limite！~~~~
-        # if pager is None:
-        #     pager = Pager(page=1, per_page=20)
+        if pager.page is None or pager.per_page is None:
+            pager = None   #Pager(page=1, per_page=100000) # 发现即使不加limit 还是会出现数据返回不全 所以如果不定义pager 尽量返回所有数据
         if sorter is None:
             sorter = Sorter(sort_by='id', desc=True)
         query = cls.reformatter(ctx=ctx, data=query)
