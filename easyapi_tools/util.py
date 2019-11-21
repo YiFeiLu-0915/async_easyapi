@@ -67,4 +67,7 @@ class DefaultUrlCondition(AbcUrlCondition):
                     sorter.desc = v
                 else:
                     query[k] = v
+        if pager.page is None and pager.per_page is None:
+            pager.page = 1
+            pager.per_page = 1000000
         return query, pager, sorter
