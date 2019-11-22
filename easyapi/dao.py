@@ -124,16 +124,25 @@ class BaseDao(metaclass=DaoMetaClass):
         sql = select([table])
         if query:
             sql = search_sql(sql, query, table)
+        # pager 不要在此做自动补充或限制 容易造成数据缺失
         if pager is not None:
             per_page = pager.per_page
             page = pager.page
-            if per_page:
-                sql = sql.limit(per_page)
-            if page:
-                if per_page is None:
-                    sql = sql.offset((page - 1) * 30).limit(30)
-                else:
-                    sql = sql.offset((page - 1) * per_page)
+
+            #page per_page 属性必须同时存在才可以 别偷懒 ha ha ha ha ha
+
+            if page is not None and per_page is not None:
+                sql = sql.offset((page - 1) * per_page).limit(per_page)
+
+            #
+            # if per_page:
+            #     sql = sql.limit(per_page)
+            # if page:
+            #     if per_page is None:
+            #         sql = sql.offset((page - 1) * 30).limit(30)
+            #     else:
+            #         sql = sql.offset((page - 1) * per_page)
+
         if sorter:
             order_by = sorter.sort_by
             desc = sorter.desc
