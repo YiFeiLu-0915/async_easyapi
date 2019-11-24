@@ -99,6 +99,9 @@ class BaseController(metaclass=ControllerMetaClass):
             ctx = EasyApiContext()
         if data is None:
             data = {}
+        ctx_query = ctx.read('query')
+        if ctx_query is not None:
+            data.update(ctx_query)
         if cls.__validator__ is not None:
             err = cls.__validator__.validate(data)
             if err is not None:
