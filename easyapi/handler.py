@@ -50,7 +50,7 @@ class FlaskBaseHandler(views.MethodView, metaclass=FlaskHandlerMeta):
             self.__resource__: data
         })
 
-    def put(self, id, **kwargs):
+    def put(self, id: int, **kwargs):
         """
         新增的路由
         :return:
@@ -64,7 +64,7 @@ class FlaskBaseHandler(views.MethodView, metaclass=FlaskHandlerMeta):
             return flask.jsonify(code=e.code, msg=e.err_info), e.http_code
         return flask.jsonify(code=200, count=count, msg='')
 
-    def delete(self, id, **kwargs):
+    def delete(self, id: int, **kwargs):
         """
         删除的路由
         :param id:

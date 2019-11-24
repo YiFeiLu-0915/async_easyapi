@@ -71,6 +71,9 @@ class BaseController(metaclass=ControllerMetaClass):
             ctx = EasyApiContext()
         if query is None:
             query = {}
+        ctx_query = ctx.read('query')
+        query.update(ctx_query)
+
         # 如果 pager 是None 不做任何处理 在handler中调用， pager不能自动设定返回30 造成数据缺失
         # if pager is None:
         #     pager = Pager(page=1, per_page=20)
