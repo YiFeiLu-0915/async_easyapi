@@ -1,7 +1,8 @@
 from sqlalchemy import Table
 from dataclasses import dataclass
 
-
+# _or__like_<attr>:*** 、 _or_<attr>:*** ,  :   SELECT * from student WHERE id = 1 or id = 2 AND age = 20;   - 查询结果是id = 2且age = 20或者id=1
+# _or_:[{id:1},{id:2}]    :                     SELECT * from student WHERE (id = 1 or id = 2 )
 def search_sql(sql, query: dict, table: Table):
     for k in query.keys():
         if type(query[k]) is not list:
